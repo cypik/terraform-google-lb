@@ -27,6 +27,7 @@ output "psc_connection_id" {
   value       = google_compute_forwarding_rule.default.psc_connection_id
   description = "The PSC connection id of the PSC Forwarding Rule."
 }
+
 output "psc_connection_status" {
   value       = google_compute_forwarding_rule.default.psc_connection_status
   description = "The PSC connection status of the PSC Forwarding Rule."

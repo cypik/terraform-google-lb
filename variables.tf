@@ -1,17 +1,60 @@
-variable "project" {
+variable "name" {
   type        = string
-  description = "The project to deploy to, if not set the default provider project is used."
-  default     = "opz0-xxxxxx"
+  default     = "test"
+  description = "Name of the resource. Provided by the client when the resource is created. "
+}
+
+variable "environment" {
+  type        = string
+  default     = ""
+  description = "Environment (e.g. `prod`, `dev`, `staging`)."
+}
+
+variable "label_order" {
+  type        = list(any)
+  default     = ["name", "environment"]
+  description = "Label order, e.g. sequence of application name and environment `name`,`environment`,'attribute' [`webserver`,`qa`,`devops`,`public`,] ."
+}
+
+variable "managedby" {
+  type        = string
+  default     = ""
+  description = "ManagedBy, eg 'Opz0'."
+}
+
+variable "repository" {
+  type        = string
+  default     = ""
+  description = "Terraform current module repo"
+}
+
+variable "network" {
+  type        = string
+  description = "Name of the network to create resources in."
+  default     = "default"
+}
+
+variable "target_tags" {
+  description = "List of target tags to allow traffic using firewall rule."
+  type        = list(string)
+  default     = null
+}
+
+variable "target_service_accounts" {
+  description = "List of target service accounts to allow traffic using firewall rule."
+  type        = list(string)
+  default     = null
+}
+
+variable "allowed_ips" {
+  description = "The IP address ranges which can access the load balancer."
+  default     = ["0.0.0.0/0"]
+  type        = list(string)
 }
 
 variable "region" {
   type        = string
   description = "Region used for GCP resources."
-}
-
-variable "name" {
-  type        = string
-  description = "Name for the forwarding rule and prefix for supporting resources."
 }
 
 variable "service_port" {

@@ -5,6 +5,9 @@
 **/values-*.yaml
 .kitchen
 credentials.json
-
+/.idea
+/.idea/workspace.xml
+/.idea/vcs.xml
+/.idea/misc.xml
 # tf lock file
 .terraform.lock.hcl
