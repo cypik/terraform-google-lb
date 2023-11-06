@@ -1,14 +1,9 @@
-output "target_id" {
-  value       = google_compute_target_pool.default.id
-  description = "An identifier for the resource with format"
-}
-
 output "target_pool" {
   description = "The `self_link` to the target pool resource created."
   value       = google_compute_target_pool.default.self_link
 }
 
-output "external_ip" {
+output "ip_address" {
   description = "The external ip address of the forwarding rule."
   value       = google_compute_forwarding_rule.default.ip_address
 }

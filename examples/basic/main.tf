@@ -11,7 +11,6 @@ module "instance_template" {
   source               = "git::git@github.com:opz0/terraform-gcp-template-instance.git?ref=master"
   instance_template    = true
   name                 = "template"
-  project_id           = "opz0-397319"
   environment          = "test"
   region               = "asia-northeast1"
   source_image         = "ubuntu-2204-jammy-v20230908"
@@ -38,7 +37,6 @@ module "instance_group" {
   source              = "git::git@github.com:opz0/terraform-gcp-instance-group.git?ref=master"
   region              = "asia-northeast1"
   hostname            = "test"
-  project_id          = "opz0-397319"
   autoscaling_enabled = true
   instance_template   = module.instance_template.self_link_unique
   min_replicas        = 2
@@ -62,9 +60,9 @@ module "instance_group" {
 module "load_balancer" {
   source                  = "../../"
   name                    = "test"
-  environment             = "loadbalancer"
+  environment             = "load-balancer"
   region                  = "asia-northeast1"
-  service_port            = 80
+  port_range              = 80
   network                 = module.vpc.vpc_id
   health_check            = local.health_check
   target_service_accounts = []

@@ -2,7 +2,7 @@
 #### vpc module call.
 ####==============================================================================
 module "vpc" {
-  source                                    = "git::git@github.com:opz0/terraform-gcp-vpc.git?ref=master"
+  source                                    = "git::https://github.com/opz0/terraform-gcp-vpc.git?ref=v1.0.0"
   name                                      = "app"
   environment                               = "test"
   network_firewall_policy_enforcement_order = "AFTER_CLASSIC_FIREWALL"
@@ -12,19 +12,19 @@ module "vpc" {
 #### subnet module call.
 ####==============================================================================
 module "subnet" {
-  source        = "git::git@github.com:opz0/terraform-gcp-subnet.git?ref=master"
+  source        = "git::https://github.com/opz0/terraform-gcp-subnet.git?ref=v1.0.0"
   name          = "subnet"
   environment   = "test"
   gcp_region    = "asia-northeast1"
   network       = module.vpc.vpc_id
-  source_ranges = ["10.10.0.0/16"]
+  ip_cidr_range = "10.10.0.0/16"
 }
 
 ####==============================================================================
 #### firewall module call.
 ####==============================================================================
 module "firewall" {
-  source        = "git::git@github.com:opz0/terraform-gcp-firewall.git?ref=master"
+  source        = "git::https://github.com/opz0/terraform-gcp-firewall.git?ref=v1.0.0"
   name          = "app"
   environment   = "test"
   network       = module.vpc.self_link

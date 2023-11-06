@@ -1,5 +1,5 @@
 module "labels" {
-  source      = "git::git@github.com:opz0/terraform-gcp-labels.git?ref=master"
+  source      = "git::https://github.com/opz0/terraform-gcp-labels.git?ref=v1.0.0"
   name        = var.name
   environment = var.environment
   label_order = var.label_order
@@ -20,12 +20,11 @@ locals {
 ##### [IPAddress, IPProtocol, portRange] tuple.
 #####==============================================================================
 resource "google_compute_forwarding_rule" "default" {
-  provider              = google-beta
   project               = data.google_client_config.current.project
-  name                  = format("%s", module.labels.id)
+  name                  = format("%s-rule", module.labels.id)
   target                = google_compute_target_pool.default.self_link
   load_balancing_scheme = "EXTERNAL"
-  port_range            = var.service_port
+  port_range            = var.port_range
   region                = var.region
   ip_address            = var.ip_address
   ip_protocol           = var.ip_protocol
@@ -37,7 +36,7 @@ resource "google_compute_forwarding_rule" "default" {
 #####==============================================================================
 resource "google_compute_target_pool" "default" {
   project          = data.google_client_config.current.project
-  name             = format("%s", module.labels.id)
+  name             = format("%s-pool", module.labels.id)
   region           = var.region
   session_affinity = var.session_affinity
   health_checks    = var.disable_health_check ? [] : [google_compute_http_health_check.default[0].self_link]
@@ -50,7 +49,7 @@ resource "google_compute_target_pool" "default" {
 resource "google_compute_http_health_check" "default" {
   count               = var.disable_health_check ? 0 : 1
   project             = data.google_client_config.current.project
-  name                = "${format("%s", module.labels.id)}-hc"
+  name                = "${format("%s-health-check", module.labels.id)}-hc"
   check_interval_sec  = var.health_check["check_interval_sec"]
   healthy_threshold   = var.health_check["healthy_threshold"]
   timeout_sec         = var.health_check["timeout_sec"]
@@ -59,10 +58,10 @@ resource "google_compute_http_health_check" "default" {
   request_path        = var.health_check["request_path"]
   host                = var.health_check["host"]
 }
-
+#tfsec:ignore:google-compute-no-public-ingress
 resource "google_compute_firewall" "default-lb-fw" {
   project = data.google_client_config.current.project == "" ? data.google_client_config.current.project : data.google_client_config.current.project
-  name    = "${format("%s", module.labels.id)}-vm-service"
+  name    = "${format("%s-firewall", module.labels.id)}-vm-service"
   network = var.network
 
   allow {
@@ -74,11 +73,11 @@ resource "google_compute_firewall" "default-lb-fw" {
   target_tags             = var.target_tags
   target_service_accounts = var.target_service_accounts
 }
-
+#tfsec:ignore:google-compute-no-public-ingress
 resource "google_compute_firewall" "default-hc-fw" {
   count   = var.disable_health_check ? 0 : 1
   project = data.google_client_config.current.project == "" ? data.google_client_config.current.project : data.google_client_config.current.project
-  name    = "${format("%s", module.labels.id)}-hc"
+  name    = "${format("%s-firewall", module.labels.id)}-hc"
   network = var.network
 
   allow {

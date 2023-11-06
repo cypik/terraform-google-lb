@@ -57,7 +57,7 @@ variable "region" {
   description = "Region used for GCP resources."
 }
 
-variable "service_port" {
+variable "port_range" {
   type        = number
   description = "TCP port your service is listening on."
 }
