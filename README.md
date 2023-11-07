@@ -12,7 +12,7 @@
 This project deploys a Google Cloud infrastructure using Terraform to create lb .
 ## Usage
 To use this module, you should have Terraform installed and configured for GCP. This module provides the necessary Terraform configuration for creating GCP resources, and you can customize the inputs as needed. Below is an example of how to use this module:
-
+# Example: load-balancer
 ```hcl
 module "load_balancer" {
   source                  = "git::https://github.com/opz0/terraform-gcp-lb.git?ref=v1.0.0"
