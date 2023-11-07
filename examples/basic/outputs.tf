@@ -1,16 +1,11 @@
 output "load_balancer_default_ip" {
   description = "The external ip address of the forwarding rule for default lb."
-  value       = module.load_balancer.external_ip
-}
-
-output "target_id" {
-  value       = module.load_balancer.id
-  description = "An identifier for the resource with format"
+  value       = module.load_balancer.ip_address
 }
 
 output "target_pool" {
   description = "The `self_link` to the target pool resource created."
-  value       = module.instance_group.self_link
+  value       = module.instance_template.self_link
 }
 
 output "id" {

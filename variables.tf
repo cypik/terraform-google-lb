@@ -57,7 +57,7 @@ variable "region" {
   description = "Region used for GCP resources."
 }
 
-variable "service_port" {
+variable "port_range" {
   type        = number
   description = "TCP port your service is listening on."
 }
@@ -112,4 +112,9 @@ variable "labels" {
   description = "The labels to attach to resources created by this module."
   default     = {}
   type        = map(string)
+}
+variable "service_port" {
+  description = "The port for the service."
+  type        = number
+  default     = 80
 }
