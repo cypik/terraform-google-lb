@@ -113,3 +113,8 @@ variable "labels" {
   default     = {}
   type        = map(string)
 }
+variable "service_port" {
+  description = "The port for the service."
+  type        = number
+  default     = 80
+}

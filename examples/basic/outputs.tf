@@ -5,7 +5,7 @@ output "load_balancer_default_ip" {
 
 output "target_pool" {
   description = "The `self_link` to the target pool resource created."
-  value       = module.instance_group.self_link
+  value       = module.instance_template.self_link
 }
 
 output "id" {

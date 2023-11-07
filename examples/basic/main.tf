@@ -8,7 +8,7 @@ provider "google" {
 ##### instance_template module call.
 #####==============================================================================
 module "instance_template" {
-  source               = "git::git@github.com:opz0/terraform-gcp-template-instance.git?ref=master"
+  source               = "git::https://github.com/opz0/terraform-gcp-template-instance.git?ref=v1.0.0"
   instance_template    = true
   name                 = "template"
   environment          = "test"
@@ -21,7 +21,8 @@ module "instance_template" {
 
   metadata = {
     ssh-keys = <<EOF
-        dev:ssh-rsa +j/+nOlPpV2QeNspI//+/zKU+lCBaggRjlkx4Q3NWS1gefgv3k/3mwt2y+PDQMU= suresh@suresh
+        dev:ssh-rsa AAAAB3NzaCxxxxxxxxxxxxDk4NnO7NbLLNM= suresh@suresh
+
       EOF
   }
   access_config = [{
@@ -34,12 +35,13 @@ module "instance_template" {
 ##### instance_group module call.
 #####==============================================================================
 module "instance_group" {
-  source              = "git::git@github.com:opz0/terraform-gcp-instance-group.git?ref=master"
+  source              = "git::https://github.com/opz0/terraform-gcp-instance-group.git?ref=v1.0.0"
   region              = "asia-northeast1"
   hostname            = "test"
   autoscaling_enabled = true
   instance_template   = module.instance_template.self_link_unique
   min_replicas        = 2
+  max_replicas        = 2
   autoscaling_cpu = [{
     target            = 0.5
     predictive_method = ""
