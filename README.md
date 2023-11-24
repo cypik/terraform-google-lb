@@ -15,7 +15,7 @@ To use this module, you should have Terraform installed and configured for GCP. 
 # Example: load-balancer
 ```hcl
 module "load_balancer" {
-  source                  = "git::https://github.com/opz0/terraform-gcp-lb.git?ref=v1.0.0"
+  source                  = "git::https://github.com/cypik/terraform-gcp-lb.git?ref=v1.0.0"
   name                    = "test"
   environment             = "load-balancer"
   region                  = "asia-northeast1"
@@ -52,10 +52,10 @@ Each module may have specific outputs. You can retrieve these outputs by referen
 - 'service_name' : The internal fully qualified service name for this Forwarding Rule.
 
 ## Examples
-For detailed examples on how to use this module, please refer to the 'examples' directory within this repository.
+For detailed examples on how to use this module, please refer to the [Examples](https://github.com/cypik/terraform-gcp-lb/tree/master/examples) directory within this repository.
 
 ## Author
 Your Name Replace '[License Name]' and '[Your Name]' with the appropriate license and your information. Feel free to expand this README with additional details or usage instructions as needed for your specific use case.
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/opz0/terraform-gcp-lb/blob/master/LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/cypik/terraform-gcp-lb/blob/master/LICENSE) file for details.
