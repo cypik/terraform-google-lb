@@ -1,5 +1,5 @@
 provider "google" {
-  project = "opz0-397319"
+  project = "cypik-397319"
   region  = "asia-northeast1"
   zone    = "asia-northeast1-a"
 }
@@ -8,7 +8,7 @@ provider "google" {
 ##### instance_template module call.
 #####==============================================================================
 module "instance_template" {
-  source               = "git::https://github.com/opz0/terraform-gcp-template-instance.git?ref=v1.0.0"
+  source               = "git::https://github.com/cypik/terraform-gcp-template-instance.git?ref=v1.0.0"
   instance_template    = true
   name                 = "template"
   environment          = "test"
@@ -35,7 +35,7 @@ module "instance_template" {
 ##### instance_group module call.
 #####==============================================================================
 module "instance_group" {
-  source              = "git::https://github.com/opz0/terraform-gcp-instance-group.git?ref=v1.0.0"
+  source              = "git::https://github.com/cypik/terraform-gcp-instance-group.git?ref=v1.0.0"
   region              = "asia-northeast1"
   hostname            = "test"
   autoscaling_enabled = true
