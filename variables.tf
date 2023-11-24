@@ -24,7 +24,7 @@ variable "managedby" {
 
 variable "repository" {
   type        = string
-  default     = ""
+  default     = "https://github.com/cypik/terraform-gcp-lb"
   description = "Terraform current module repo"
 }
 
@@ -113,6 +113,7 @@ variable "labels" {
   default     = {}
   type        = map(string)
 }
+
 variable "service_port" {
   description = "The port for the service."
   type        = number

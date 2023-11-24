@@ -1,5 +1,5 @@
 provider "google" {
-  project = "cypik-397319"
+  project = "opz0-397319"
   region  = "asia-northeast1"
   zone    = "asia-northeast1-a"
 }
@@ -9,7 +9,6 @@ provider "google" {
 #####==============================================================================
 module "instance_template" {
   source               = "git::https://github.com/cypik/terraform-gcp-template-instance.git?ref=v1.0.0"
-  instance_template    = true
   name                 = "template"
   environment          = "test"
   region               = "asia-northeast1"
@@ -17,19 +16,17 @@ module "instance_template" {
   source_image_family  = "ubuntu-2204-lts"
   source_image_project = "ubuntu-os-cloud"
   subnetwork           = module.subnet.subnet_id
+  instance_template    = true
   service_account      = null
-
+  ## public IP if enable_public_ip is true
+  enable_public_ip = true
   metadata = {
     ssh-keys = <<EOF
-        dev:ssh-rsa AAAAB3NzaCxxxxxxxxxxxxDk4NnO7NbLLNM= suresh@suresh
-
-      EOF
+      dev:ssh-rsa AAAAB3NzaC1yc2EAA/3mwt2y+PDQMU= suresh@suresh
+    EOF
   }
-  access_config = [{
-    nat_ip       = ""
-    network_tier = ""
-  }, ]
 }
+
 
 #####==============================================================================
 ##### instance_group module call.
