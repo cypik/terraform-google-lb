@@ -1,4 +1,4 @@
-# terraform-gcp-lb
+# Terraform-gcp-lb
 # Google Cloud Infrastructure Provisioning with Terraform
 ## Table of Contents
 
@@ -9,10 +9,10 @@
 - [License](#license)
 
 ## Introduction
-This project deploys a Google Cloud infrastructure using Terraform to create lb .
+This project deploys a Google Cloud infrastructure using Terraform to create **LOAD-BALANCER** .
 ## Usage
 To use this module, you should have Terraform installed and configured for GCP. This module provides the necessary Terraform configuration for creating GCP resources, and you can customize the inputs as needed. Below is an example of how to use this module:
-# Example: load-balancer
+# Example: _load-balancer_
 ```hcl
 module "load_balancer" {
   source                  = "git::https://github.com/cypik/terraform-gcp-lb.git?ref=v1.0.0"
@@ -29,7 +29,7 @@ This example demonstrates how to create various GCP resources using the provided
 
 ## Module Inputs
 
-- 'name'  : The name of the service account.
+- `name`  : The name of the service account.
 - 'environment': The environment type.
 - 'project_id' : The GCP project ID.
 - 'region': A reference to the region where the regional forwarding rule resides.
