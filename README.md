@@ -30,32 +30,32 @@ This example demonstrates how to create various GCP resources using the provided
 ## Module Inputs
 
 - `name`  : The name of the service account.
-- 'environment': The environment type.
-- 'project_id' : The GCP project ID.
-- 'region': A reference to the region where the regional forwarding rule resides.
-- 'port_range': IThis field can only be used:
-- 'network' : This field is not used for external load balancing.
-- 'health_check' : List of zero or one health check name or self_link.
-- 'target_service_accounts' : A list of service accounts indicating
+- `environment` : The environment type.
+- `project_id` : The GCP project ID.
+- `region` : A reference to the region where the regional forwarding rule resides.
+- `port_range` : IThis field can only be used:
+- `network` : This field is not used for external load balancing.
+- `health_check` : List of zero or one health check name or self_link.
+- `target_service_accounts` : A list of service accounts indicating
 
 ## Module Outputs
 Each module may have specific outputs. You can retrieve these outputs by referencing the module in your Terraform configuration.
 
-- 'id' : An identifier for the resource with format
-- 'ip_address' : IP address for which this forwarding rule accepts traffic.
-- 'self_link': The URI of the created resource.
-- 'creation_timestamp' : Creation timestamp in RFC3339 text format.
-- 'psc_connection_status': Self link of the keyring.
-- 'psc_connection_id': The PSC connection id of the PSC Forwarding Rule.
-- 'health_check_id' : An identifier for the resource with format
-- 'health_check_creation_timestamp' :  Creation timestamp in RFC3339 text format.
-- 'service_name' : The internal fully qualified service name for this Forwarding Rule.
+- `id` : An identifier for the resource with format
+- `ip_address` : IP address for which this forwarding rule accepts traffic.
+- `self_link` : The URI of the created resource.
+- `creation_timestamp` : Creation timestamp in RFC3339 text format.
+- `psc_connection_status` : Self link of the keyring.
+- `psc_connection_id` : The PSC connection id of the PSC Forwarding Rule.
+- `health_check_id`  : An identifier for the resource with format
+- `health_check_creation_timestamp` :  Creation timestamp in RFC3339 text format.
+- `service_name` : The internal fully qualified service name for this Forwarding Rule.
 
 ## Examples
-For detailed examples on how to use this module, please refer to the [Examples](https://github.com/cypik/terraform-gcp-lb/tree/master/examples) directory within this repository.
+For detailed examples on how to use this module, please refer to the [EXAMPLES](https://github.com/cypik/terraform-gcp-lb/tree/master/examples) directory within this repository.
 
 ## Author
-Your Name Replace '[License Name]' and '[Your Name]' with the appropriate license and your information. Feel free to expand this README with additional details or usage instructions as needed for your specific use case.
+Your Name Replace **'[License Name]'** and **'[Your Name]'** with the appropriate license and your information. Feel free to expand this README with additional details or usage instructions as needed for your specific use case.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/cypik/terraform-gcp-lb/blob/master/LICENSE) file for details.
