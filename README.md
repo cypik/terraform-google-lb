@@ -9,7 +9,7 @@
 - [License](#license)
 
 ## Introduction
-This project deploys a Google Cloud infrastructure using Terraform to create **LOAD-BALANCER** .
+This project deploys a Google Cloud infrastructure using Terraform to create Load-Balancer.
 ## Usage
 To use this module, you should have Terraform installed and configured for GCP. This module provides the necessary Terraform configuration for creating GCP resources, and you can customize the inputs as needed. Below is an example of how to use this module:
 # Example: _load-balancer_
@@ -52,7 +52,7 @@ Each module may have specific outputs. You can retrieve these outputs by referen
 - `service_name` : The internal fully qualified service name for this Forwarding Rule.
 
 ## Examples
-For detailed examples on how to use this module, please refer to the [EXAMPLES](https://github.com/cypik/terraform-gcp-lb/tree/master/examples) directory within this repository.
+For detailed examples on how to use this module, please refer to the [Examples](https://github.com/cypik/terraform-gcp-lb/tree/master/examples) directory within this repository.
 
 ## Author
 Your Name Replace **'[License Name]'** and **'[Your Name]'** with the appropriate license and your information. Feel free to expand this README with additional details or usage instructions as needed for your specific use case.
