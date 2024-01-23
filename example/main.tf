@@ -5,10 +5,55 @@ provider "google" {
 }
 
 #####==============================================================================
+##### vpc module call.
+#####==============================================================================
+module "vpc" {
+  source                                    = "cypik/vpc/google"
+  version                                   = "1.0.1"
+  name                                      = "app"
+  environment                               = "test"
+  routing_mode                              = "REGIONAL"
+  network_firewall_policy_enforcement_order = "AFTER_CLASSIC_FIREWALL"
+}
+
+#####==============================================================================
+##### subnet module call.
+#####==============================================================================
+module "subnet" {
+  source        = "cypik/subnet/google"
+  version       = "1.0.1"
+  name          = "app"
+  environment   = "test"
+  subnet_names  = ["subnet-a"]
+  gcp_region    = "asia-northeast1"
+  network       = module.vpc.vpc_id
+  ip_cidr_range = ["10.10.1.0/24"]
+}
+
+#####==============================================================================
+##### firewall module call.
+#####==============================================================================
+module "firewall" {
+  source        = "cypik/firewall/google"
+  version       = "1.0.1"
+  name          = "app"
+  environment   = "test"
+  network       = module.vpc.vpc_id
+  source_ranges = ["0.0.0.0/0"]
+
+  allow = [
+    { protocol = "tcp"
+      ports    = ["22", "80"]
+    }
+  ]
+}
+
+#####==============================================================================
 ##### instance_template module call.
 #####==============================================================================
 module "instance_template" {
-  source               = "git::https://github.com/cypik/terraform-gcp-template-instance.git?ref=v1.0.0"
+  source               = "cypik/template-instance/google"
+  version              = "1.0.1"
   name                 = "template"
   environment          = "test"
   region               = "asia-northeast1"
@@ -28,12 +73,12 @@ module "instance_template" {
   }
 }
 
-
 #####==============================================================================
 ##### instance_group module call.
 #####==============================================================================
 module "instance_group" {
-  source              = "git::https://github.com/cypik/terraform-gcp-instance-group.git?ref=v1.0.0"
+  source              = "cypik/instance-group/google"
+  version             = "1.0.1"
   region              = "asia-northeast1"
   hostname            = "test"
   autoscaling_enabled = true
@@ -58,7 +103,7 @@ module "instance_group" {
 #### load_balancer_custom_hc module call.
 ####==============================================================================
 module "load_balancer" {
-  source                  = "../../"
+  source                  = ".."
   name                    = "test"
   environment             = "load-balancer"
   region                  = "asia-northeast1"

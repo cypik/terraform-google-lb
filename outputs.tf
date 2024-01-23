@@ -10,7 +10,7 @@ output "ip_address" {
 
 output "id" {
   value       = google_compute_forwarding_rule.default.id
-  description = " an identifier for the resource with format"
+  description = " An identifier for the resource with format"
 }
 
 output "creation_timestamp" {
